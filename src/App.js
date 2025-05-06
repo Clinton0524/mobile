@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import Footer from "./Components/Footer";
 
 // Lazy-loaded components
 const Home = lazy(() => import("./Components/Home"));
@@ -29,6 +30,7 @@ function App() {
             <Route path="/category/:categoryId" element={<CategoryProducts />} />
           </Routes>
         </Suspense>
+        <Footer/>
       </Router>
     </div>
   );

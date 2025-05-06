@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getCategory = createAsyncThunk("get/categories", async () => {
   const response = await fetch(
-    "https://newback-aold.onrender.com/api/categories?page=1&limit=8"
+    "https://newback-aold.onrender.com/api/categories?page=1&limit=12"
   );
   if (!response.ok) {
     throw new Error("error while fetching products");
@@ -13,7 +13,7 @@ export const getCategorySecond = createAsyncThunk(
   "get/categories2nd",
   async () => {
     const response = await fetch(
-      "https://newback-aold.onrender.com/api/categories?page=2&limit=8"
+      "https://newback-aold.onrender.com/api/categories?page=2&limit=12"
     );
     if (!response.ok) {
       throw new Error("error while fetching products");
@@ -25,7 +25,7 @@ export const getCategoryThird = createAsyncThunk(
   "get/categories3rd",
   async () => {
     const response = await fetch(
-      "https://newback-aold.onrender.com/api/categories?page=3&limit=8"
+      "https://newback-aold.onrender.com/api/categories?page=3&limit=12"
     );
     if (!response.ok) {
       throw new Error("error while fetching products");

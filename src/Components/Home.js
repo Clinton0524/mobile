@@ -10,6 +10,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
+import image1 from "./freepik-hand-drawn-creative-local-supermarket-facebook-headers-20250505181919FNYg.png";
+import image2 from "./freepik-waves-hand-drawn-organic-food-sale-rectangle-banner-20250505182633rTjP.png";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -56,6 +59,7 @@ const Home = () => {
   );
 
   const handleAddToCart = (productId, quantity = 1) => {
+    alert("item added to cart");
     dispatch(addToCart({ productId, quantity }));
   };
   useEffect(() => {
@@ -65,6 +69,7 @@ const Home = () => {
     dispatch(getCategoryThird());
     dispatch(getExclusiveProducts());
     dispatch(fetchCurrentUser());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   useEffect(() => {
@@ -254,7 +259,6 @@ const Home = () => {
             )}
           </div>
 
-          
           <div className="container row-2">
             <div className="row">
               <div className="col-12 d-flex align-items-center text-start deliver">
@@ -266,164 +270,271 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        {/* 🛒 Grocery & Kitchen Categories */}
-
-        <div className="col my-3">
-          <p className="text-start" style={{ fontSize: "12px" }}>
-            <strong>Grocery</strong>
-          </p>
-          <div className="row">
-            {category.map((cat) => (
-              <div
-                className="col col-sm-4 col-md-3 col-lg-1 mt-2"
-                key={cat._id}
-              >
-                <Link
-                  style={{ textDecoration: "none", color: "black" }}
-                  to={`/category/${cat._id}`}
-                >
-                  <div>
-                    <img
-                      style={{ width: "60px" }}
-                      src={cat.image}
-                      alt={cat.name}
-                    />
-                    <span style={{ fontSize: "11px" }}>{cat.name}</span>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="no-padding">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          autoplay={{ delay: 3000 }}
-          spaceBetween={8}
-          slidesPerView={2}
-          pagination={{ clickable: true }}
-          breakpoints={{
-            350: { slidesPerView: 1 },
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
-            1024: { slidesPerView: 3 },
-          }}
-        >
-          {banners.map((item) => (
-            <SwiperSlide key={item._id}>
-              <div className="col-12 my-1">
-                <img
-                  style={{ width: "100%", borderRadius: "10px" }}
-                  src={item.imageUrl}
-                  alt="hello"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        </div>
-        {/* 🛒 Snacks Categories */}
-        <div className="col mt-3">
-          <p className="text-start" style={{ fontSize: "12px" }}>
-            <strong>SNACKS</strong>
-          </p>
-          <div className="row">
-            {categorysecond.map((cat) => (
-              <div
-                className="col-3 col-sm-4 col-md-3 col-lg-1 mt-2"
-                key={cat._id}
-              >
-                <Link
-                  style={{ textDecoration: "none", color: "black" }}
-                  to={`/category/${cat._id}`}
-                >
-                  <div>
-                    <img
-                      style={{ width: "60px" }}
-                      src={cat.image}
-                      alt={cat.name}
-                    />
-                    <span style={{ fontSize: "11px" }}>{cat.name}</span>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 🛒 Beauty Categories */}
-        <div className="col mt-3">
-          <p className="text-start" style={{ fontSize: "12px" }}>
-            <strong>BEAUTY & WELLNESS</strong>
-          </p>
-          <div className="row">
-            {categorythird.map((cat) => (
-              <div
-                className="col-3 col-sm-4 col-md-3 col-lg-1 mt-2"
-                key={cat._id}
-              >
-                <Link
-                  style={{ textDecoration: "none", color: "black" }}
-                  to={`/category/${cat._id}`}
-                >
-                  <div>
-                    <img
-                      style={{ width: "60px" }}
-                      src={cat.image}
-                      alt={cat.name}
-                    />
-                    <span style={{ fontSize: "11px" }}>{cat.name}</span>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <h6 className="text-start mt-3">Exclusive Products</h6>
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{ delay: 3000 }}
-          spaceBetween={8}
-          slidesPerView={2}
-          breakpoints={{
-            350: { slidesPerView: 3 },
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 7.5 },
-          }}
-        >
-          {exclusiveProducts.map((item) => (
-            <SwiperSlide key={item._id}>
-              <div className="exclusive-product-card mb-2">
-                <div className="exclusive-product-image">
-                  <img src={item.imageUrl} alt={item.name} />
-                  <button className="wishlist-btn">❤️</button>
+        <div className="body-items">
+        <div className="container-fluid d-none d-lg-block mt-3">
+              <div className="row">
+                <div className="col-6">
+                  <img src={image1} alt="hello" className="img-fluid" />
                 </div>
-                <div className="exclusive-product-info">
-                  <h6 className="exclusive-product-name text-start">
-                    {item.name}
-                  </h6>
-                  <p className="exclusive-product-description text-start">
-                    {item.description}
-                  </p>
-                  <div className="exclusive-product-pricing">
-                    <span className="old-price">${item.oldprice}</span>
-                    <span className="new-price">${item.price}</span>
-                  </div>
+                <div className="col-6">
+                  <img src={image2} alt="hello" className="img-fluid" />
+                </div>
+              </div>
+            </div>
 
-                  <button
-                    className="add-to-cart-btn"
-                    onClick={() => handleAddToCart(item._id)}
+          <h6 className="text-start mt-3">Exclusive Products</h6>
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{ delay: 3000 }}
+            spaceBetween={8}
+            slidesPerView={2}
+            breakpoints={{
+              350: { slidesPerView: 3 },
+              640: { slidesPerView: 3 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 10.5 },
+            }}
+          >
+            {exclusiveProducts.map((item) => (
+              <SwiperSlide key={item._id}>
+                
+                <div className="exclusive-product-card mb-2">
+                  
+                  <div className="exclusive-product-image">
+                    
+                    <img src={item.imageUrl} alt={item.name} />
+                    
+                    <button className="wishlist-btn">❤️</button>
+                  </div>
+                  <div className="exclusive-product-info">
+                  <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/products/${item._id}`}
+                    >
+                    <h6 className="exclusive-product-name text-start">
+                      {item.name}
+                    </h6>
+                    <p className="exclusive-product-description text-start">
+                      {item.description}
+                    </p>
+                    <div className="exclusive-product-pricing">
+                      <span className="old-price">${item.oldprice}</span>
+                      <span className="new-price">${item.price}</span>
+                    </div>
+                    </Link>
+                    <button
+                      className="add-to-cart-btn"
+                      onClick={() => handleAddToCart(item._id)}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+            
+              </SwiperSlide>
+              
+            ))}
+          </Swiper>
+
+          <div className="no-padding">
+            <h6 className="text-start mt-3">TRENDING TODAY</h6>
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              autoplay={{ delay: 3000 }}
+              spaceBetween={8}
+              slidesPerView={2}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                350: { slidesPerView: 1 },
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
+                1024: { slidesPerView: 6 },
+              }}
+            >
+              {banners.map((item) => (
+                <SwiperSlide key={item._id}>
+                  <div className="col-12 my-1">
+                    <img
+                      style={{ width: "100%", borderRadius: "10px" }}
+                      src={item.imageUrl}
+                      alt="hello"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <h6 className="text-start mt-3">Products</h6>
+            <Swiper
+              modules={[Autoplay]}
+              autoplay={{ delay: 3000 }}
+              spaceBetween={8}
+              slidesPerView={2}
+              breakpoints={{
+                350: { slidesPerView: 3 },
+                640: { slidesPerView: 3 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 10.5 },
+              }}
+            >
+              {products.map((item) => (
+                <SwiperSlide key={item._id}>
+                  <div className="exclusive-product-card mb-2">
+                    <div className="exclusive-product-image">
+                      <img src={item.imageUrl} alt={item.name} />
+                      <button className="wishlist-btn">❤️</button>
+                    </div>
+                    <div className="exclusive-product-info">
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/products/${item._id}`}
+                    >
+                      <h6 className="exclusive-product-name text-start">
+                        {item.name}
+                      </h6>
+                      <p className="exclusive-product-description text-start">
+                        {item.description}
+                      </p>
+                      <div className="exclusive-product-pricing">
+                        <span className="old-price">${item.oldprice}</span>
+                        <span className="new-price">${item.price}</span>
+                      </div>
+</Link>
+                      <button
+                        className="add-to-cart-btn"
+                        onClick={() => handleAddToCart(item._id)}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          
+            {/* 🛒 Grocery & Kitchen Categories */}
+
+            <div className="col mb-3">
+              <p className="text-start" style={{ fontSize: "12px" }}>
+                <strong>Grocery</strong>
+              </p>
+              <div className="row">
+                {category.map((cat) => (
+                  <div
+                    className="col col-sm-4 col-md-3 col-lg-1 mt-2"
+                    key={cat._id}
                   >
-                    Add to Cart
-                  </button>
-                </div>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/category/${cat._id}`}
+                    >
+                      <div>
+                        <img
+                          className="cat-image"
+                          src={cat.image}
+                          alt={cat.name}
+                        />
+                        <span style={{ fontSize: "11px" }}>{cat.name}</span>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </div>
+          </div>
+          {/* 🛒 Snacks Categories */}
+          <div className="col mt-3">
+            <p className="text-start" style={{ fontSize: "12px" }}>
+              <strong>SNACKS</strong>
+            </p>
+            <div className="row">
+              {categorysecond.map((cat) => (
+                <div
+                  className="col-3 col-sm-4 col-md-3 col-lg-1 mt-2"
+                  key={cat._id}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/category/${cat._id}`}
+                  >
+                    <div>
+                      <img
+                        className="cat-image"
+                        src={cat.image}
+                        alt={cat.name}
+                      />
+                      <span style={{ fontSize: "11px" }}>{cat.name}</span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 🛒 Beauty Categories */}
+          <div className="col mt-3">
+            <p className="text-start" style={{ fontSize: "12px" }}>
+              <strong>BEAUTY & WELLNESS</strong>
+            </p>
+            <div className="row">
+              {categorythird.map((cat) => (
+                <div
+                  className="col-3 col-sm-4 col-md-3 col-lg-1 mt-2"
+                  key={cat._id}
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/category/${cat._id}`}
+                  >
+                    <div>
+                      <img
+                        className="cat-image"
+                        src={cat.image}
+                        alt={cat.name}
+                      />
+                      <span style={{ fontSize: "11px" }}>{cat.name}</span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container my-5">
+        <div className="row text-center">
+          <div className="col-md-4 mb-4">
+            <div className="border p-3 h-100">
+              <h5 className="fw-bold">Our Products</h5>
+              <p>
+                At FastBite, we're redefining the way you experience food.
+                Whether you're craving a late-night snack, a hearty lunch, or a
+                gourmet dinner, we've got you covered.
+              </p>
+            </div>
+          </div>
+          <div className="col-md-4 mb-4">
+            <div className="border p-3 h-100">
+              <div className="mb-3 fs-1">
+              </div>
+              <h5 className="fw-bold">About us</h5>
+              <p>
+                We believe food delivery should be simple, fast, and enjoyable.
+                That’s why we’ve built a seamless ordering experience, real-time
+                tracking
+              </p>
+            </div>
+          </div>
+          <div className="col-md-4 mb-4">
+            <div className="border p-3 h-100">
+              <h5 className="fw-bold">Content Strategy</h5>
+              <p>
+                Driven by technology and powered by passion, FastBite is more
+                than just delivery — it’s your new go-to food companion.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

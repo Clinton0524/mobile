@@ -25,8 +25,7 @@ export const getExclusiveProducts = createAsyncThunk(
   }
 );
 
-export const fetchProductsByCategoryId = createAsyncThunk(
-  "get/catProducts",
+export const fetchProductsByCategoryId = createAsyncThunk("get/catProducts",
   async (categoryId) => {
     const response = await fetch(
       `https://newback-aold.onrender.com/api/products?category=${categoryId}`
